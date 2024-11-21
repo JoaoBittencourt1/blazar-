@@ -1,0 +1,262 @@
+$color_1: #000000;
+
+.tabela {
+  position: absolute;
+  width: 1146px;
+  height: 656px;
+  background: rgba(255, 255, 255, 0.404);
+  border-radius: 20px;
+  border: 1px solid black;
+  position: absolute;
+  right: 200px;
+  top: 40px;
+  zoom: 1;
+
+  a {
+    color: $color_1;
+    font-weight: bold;
+    font-size: medium;
+  }
+}
+
+input {
+  border-radius: 10px;
+}
+
+.linha {
+  width: 476px;
+  border: 1px solid #303030;
+}
+
+#senha {
+  width: auto;
+}
+
+.avançar {
+  width: 200px;
+  height: 53px;
+  background-color: #56aaff;
+  border-radius: 10px;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#dadPes {
+  position: relative;
+  top: 2px;
+  left: 27px;
+}
+
+#endCob {
+  position: relative;
+  top: 2px;
+  left: 497px;
+}
+
+#nome {
+  position: relative;
+  top: 110px;
+  right: 367px;
+  height: 53px;
+  width: 453px;
+}
+
+#LabelNome {
+  position: relative;
+  top: 65px;
+  right: 250px;
+}
+
+#cpf {
+  position: relative;
+  top: 205px;
+  right: 848px;
+  height: 53px;
+  width: 200px;
+}
+
+#LabelCpf {
+  position: relative;
+  top: 160px;
+  right: 820px;
+}
+
+#LabelDN {
+  position: relative;
+  top: 107px;
+  left: 280px;
+  white-space: nowrap;
+}
+
+#nascimento {
+  position: relative;
+  top: 152px;
+  right: -137px;
+  height: 53px;
+  width: 200px;
+}
+
+#email {
+  position: relative;
+  top: 258px;
+  right: 360px;
+  height: 53px;
+  width: 453px;
+}
+#LabelEmail {
+  position: relative;
+  top: 205px;
+  right: 314px;
+}
+#LabelSenha {
+  position: relative;
+  top: 315px;
+  right: 810px;
+}
+#senha {
+  position: relative;
+  top: 375px;
+  right: 855px;
+  height: 53px;
+}
+#cep {
+  position: relative;
+  bottom: 5px;
+  left: 608px;
+  height: 53px;
+  width: 200px;
+}
+#LabelCep {
+  position: relative;
+  bottom: -4px;
+  right: 495px;
+}
+#pontoDeReferencia {
+  position: relative;
+  top: -5px;
+  left: 510px;
+  height: 53px;
+  width: 200px;
+}
+#LabelPontoR {
+  position: relative;
+  bottom: 50px;
+  left: 650px;
+}
+#endereco {
+  position: relative;
+  top: 100px;
+  left: 5px;
+  width: 300px;
+  height: 53px;
+}
+#LabelEnd {
+  position: relative;
+  top: 45px;
+  left: 74px;
+}
+#numeroDaCasa {
+  position: relative;
+  top: 100px;
+  right: 16px;
+  width: 100px;
+  height: 53px;
+}
+#LabelNCasa {
+  position: relative;
+  top: 45px;
+  left: 47px;
+}
+#complemento {
+  position: relative;
+  top: 153px;
+  left: 507px;
+  height: 53px;
+  width: 435px;
+}
+#LabelComplemento {
+  position: relative;
+  top: 97px;
+  left: 612px;
+}
+#estado {
+  position: relative;
+  top: 270px;
+  left: 25px;
+  height: 53px;
+  width: 200px;
+}
+#LabelEstado {
+  position: relative;
+  top: 210px;
+  left: 75px;
+}
+#cidade {
+  position: relative;
+  top: 270px;
+  left: 10px;
+  height: 53px;
+  width: 200px;
+}
+#LabelCidade {
+  position: relative;
+  top: 210px;
+  left: 62px;
+}
+#testarFerramenta {
+  cursor: pointer;
+  position: relative;
+  top: 355px;
+  left: 25px;
+}
+#btnAvancar {
+  font-weight: bold;
+  font-size: 17px;
+  cursor: pointer;
+  position: relative;
+  top: 360px;
+  left: 670px;
+  width: 200px;
+  height: 53px;
+  background-color: #56aaff;
+  border-radius: 10px;
+  border: none;
+}
+#liTermoUso {
+  position: relative;
+  top: 270px;
+  left: 180px;
+}
+#linkTermoUso {
+  cursor: pointer;
+  color: blue;
+  position: relative;
+  top: 270px;
+  left: 182px;
+}
+#checkTermoUso {
+  position: relative;
+  top: 272px;
+  left: -220px;
+}
+#liPolPriv {
+  position: relative;
+  top: 260px;
+  left: 625px;
+  white-space: nowrap;
+}
+#linkPolPriv {
+  position: relative;
+  top: 260px;
+  left: 630px;
+  cursor: pointer;
+  color: blue;
+}
+#checkPolPriv {
+  position: relative;
+  top: 262px;
+  left: 174px;
+}
