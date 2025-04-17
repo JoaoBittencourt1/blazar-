@@ -1,259 +1,130 @@
-.fatura {
-  margin: auto;
-  display: flex;
-  justify-content: space-around;
-  gap: 100px;
-}
-
-hr {
-  border: none;
-  margin: 20px 0;
-  border-top: 1px solid rgba(113, 113, 113, 0.7);
-}
-
-.card {
-  display: flex;
-  height: 656px;
-  max-height: 656px;
-  width: 582px;
-  background: rgba(255, 255, 255, 0.404);
-  border-radius: 10px;
-  flex-direction: column;
-  align-items: first baseline;
-  justify-content: first baseline;
-  padding: 10px 20px;
-  margin: 40px auto;
-
-  input {
-    width: 412px;
-    height: 53px;
-    border-radius: 10px;
-    border: none;
-    margin-bottom: 15px;
-  }
-}
-
-.card2 {
-  display: flex;
-  height: 656px;
-  max-height: 656px;
-  width: 582px;
-  background: rgba(255, 255, 255, 0.404);
-  border-radius: 10px;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px 20px;
-  margin: 40px auto;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-input:placeholder-shown {
-  background-color: transparent;
+.fatura {
+  display: flex;
+  justify-content: center; /* centraliza na horizontal */
+  gap: 40px; /* espaço entre os cards */
+  flex-wrap: wrap; /* empilha em telas pequenas */
+  max-width: 1300px;
+  margin: 40px auto;
 }
 
-#numFatura {
-  position: relative;
-  top: 10px;
-  left: 25px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-#dataFatura {
-  color: #404040;
-  opacity: 0.5;
-  font-size: 20px;
-  position: relative;
-  top: 10px;
-  left: 50px;
-}
-
-#textoDesc {
-  font-size: 20px;
-  color: #404040;
-  opacity: 0.5;
-  position: relative;
-  left: 25px;
-  bottom: 7px;
-}
-
-#textoVal {
-  font-size: 20px;
-  color: #404040;
-  opacity: 0.5;
-  position: relative;
-  left: 390px;
-  bottom: 7px;
-}
-
-#hr2 {
-  position: relative;
-  bottom: 15px;
-}
-
-#textoPlanoGold {
-  position: relative;
-  bottom: 22px;
-  left: 25px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-#textoValor {
-  font-weight: bold;
-  font-size: 20px;
-  color: #000000;
-  position: relative;
-  left: 265px;
-  bottom: 20px;
-}
-
-#hr3 {
-  position: relative;
-  bottom: 30px;
-}
-
-#cupomDesconto {
-  font-size: 20px;
-  font-weight: bold;
-  position: relative;
-  bottom: 35px;
-  left: 25px;
-}
-
-#inputCupomDesconto {
-  background-color: transparent;
-  border: 1px solid #404040;
-  border-radius: 5px;
-  position: relative;
-  left: 87px;
-  bottom: 35px;
-  width: 170px;
-  height: 30px;
-  outline: none;
-
-  &::placeholder {
-    color: #404040;
-  }
-}
-
-#btnAplicar {
-  position: relative;
-  cursor: pointer;
-  background-color: rgb(178, 178, 178);
-  border-color: rgba(113, 113, 113, 0.35);
-  border-radius: 5px;
-  height: 30px;
-  top: -35px;
-  left: 78px;
-  margin-left: 20px;
+.card, .card2 {
+  width: 540px;
+  min-width: 320px;
+  background: rgba(255,255,255,0.404);
+  border-radius: 20px;
   border: 1px solid black;
-  width: 60px;
-  padding: 0px;
-  font-size: 14px;
+  padding: 32px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid rgba(113, 113, 113, 0.7);
+  margin: 20px 0;
+}
+
+.fatura-header, .fatura-row, .fatura-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fatura-header span, .fatura-row span, .fatura-total-row span {
+  font-size: 20px;
+  color: #404040;
+  opacity: 1;
+}
+
+.fatura-header .title, .fatura-row .title, .fatura-total-row .title {
+  font-weight: bold;
+}
+
+.fatura-row .value {
+  font-weight: bold;
+  color: #404040;
+  min-width: 80px;
+  text-align: right;
+}
+
+.fatura-total-row .value {
+  font-weight: bold;
+  color: #0900b2;
+  min-width: 80px;
+  text-align: right;
+}
+
+input[type="text"] {
+  width: 100%;
+  height: 53px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 0 15px;
+  font-size: 16px;
+  background-color: white;
+  margin-bottom: 15px;
 }
 
 .stripe-input {
-  left: 20px;
-  position: relative;
-  width: 412px;
+  width: 100%;
   height: 53px;
   border-radius: 10px;
-  border: 2px solid #000000;
+  border: 1px solid #ccc;
   padding: 10px;
-  box-sizing: border-box;
   margin-bottom: 15px;
-  margin-top: 10px;
-  top: 58px;
+  box-sizing: border-box;
   background-color: white;
-}
-
-#hr4 {
-  position: relative;
-  bottom: 45px;
-}
-
-#textoTotPag {
-  font-size: 20px;
-  color: #404040;
-  opacity: 0.5;
-  position: relative;
-  bottom: 45px;
-  left: 25px;
-}
-
-#textoValPag {
-  font-weight: bold;
-  font-size: 20px;
-  color: #0900b2;
-  position: relative;
-  left: 313px;
-  bottom: 40px;
-}
-
-#tabelaDadPag {
-  position: relative;
-  top: 10px;
-  left: 170px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-#nomeCartao {
-  left: 20px;
-  position: relative;
-  width: 412px;
-  height: 53px;
-  right: -1px;
-  top: 40px;
-  background-color: white;
-}
-
-#CPF {
-  position: relative;
-  width: 412px;
-  height: 53px;
-  right: -1px;
-  left: 20px;
-  top: 53px;
-  margin-top: 50pxpx;
-  border: 2px solid black;
-  background: white;
-}
-
-#card-expiry-element {
-  width: 201px;
-  margin-top: 0px;
-}
-
-#card-cvc-element {
-  margin-top: 0px;
-  width: 201px;
 }
 
 #cvcValidade {
   display: flex;
   gap: 10px;
-}
-#radioPlanoGold {
-  position: relative;
-  top: 100px;
-  right: 180px;
-  height: 20px;
-  width: 20px;
-  border-radius: 100px;
-  background-color: black;
+  margin-bottom: 15px;
 }
 
-#textoPlanoGoldOption {
+.botao-concluir {
+  background-color: #56aaff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  height: 53px;
   font-size: 20px;
   font-weight: bold;
-  position: relative;
-  top: 95px;
-  right: 170px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-concluir:disabled {
+  background-color: #b3d8ff;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .fatura {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .card, .card2 {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .fatura-header, .fatura-row, .fatura-total-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .fatura-row .value, .fatura-total-row .value {
+    text-align: left;
+    min-width: auto;
+  }
 }
