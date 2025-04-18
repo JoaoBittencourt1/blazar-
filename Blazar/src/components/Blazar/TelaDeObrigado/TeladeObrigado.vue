@@ -1,8 +1,8 @@
 <template>
-  <div className="container">
+  <div class="container">
     <h1>Obrigado!</h1>
-    <p>Seu pagamento foi concluido com sucesso!</p>
-    <a href="/" className="btn">Voltar para a Página Inicial</a>
+    <p>Seu pagamento foi concluído com sucesso!</p>
+    <a href="/" class="btn">Voltar para a Página Inicial</a>
   </div>
 </template>
 
@@ -13,6 +13,7 @@ export default {
   name: "TeladeObrigado",
   setup() {
     console.log("Renderizando Tela de Obrigado");
+    return {};
   },
 };
 </script>

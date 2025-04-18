@@ -38,7 +38,7 @@ p {
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  font-size: bold;
+  font-weight: bold; /* Corrigido aqui */
   color: black;
   background-color: #56aaff;
   border: none;

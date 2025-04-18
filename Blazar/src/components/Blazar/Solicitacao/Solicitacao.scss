@@ -45,6 +45,11 @@
     font-weight: bold;
     margin-top: auto; /* Posiciona o botão no fim do contêiner */
     text-align: center;
+    transition: background-color 0.3s ease; /* Adiciona uma transição suave */
+
+    &:hover {
+      background-color: darken(rgba(3, 143, 236, 1), 10%); /* Escurece o botão no hover */
+    }
   }
 }
 
