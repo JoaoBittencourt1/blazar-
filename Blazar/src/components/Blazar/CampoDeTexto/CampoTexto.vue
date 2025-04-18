@@ -22,7 +22,12 @@
 
             <div class="campo">
               <label for="nascimento">Data de nascimento</label>
-              <input id="nascimento" type="date" v-model="nascimento" placeholder="dd/mm/aaaa" />
+              <input
+                id="nascimento"
+                type="date"
+                v-model="nascimento"
+                placeholder="dd/mm/aaaa"
+              />
             </div>
           </div>
 
@@ -47,7 +52,11 @@
 
             <div class="campo">
               <label for="pontoDeReferencia">Ponto de referência</label>
-              <input id="pontoDeReferencia" type="text" v-model="pontoDeReferencia" />
+              <input
+                id="pontoDeReferencia"
+                type="text"
+                v-model="pontoDeReferencia"
+              />
             </div>
           </div>
 
@@ -73,7 +82,11 @@
               <label for="cidade">Cidade</label>
               <select id="cidade" v-model="cidade">
                 <option value="" disabled selected>Selecione a cidade</option>
-                <option v-for="cidade in cidades" :key="cidade.id" :value="cidade.nome">
+                <option
+                  v-for="cidade in cidades"
+                  :key="cidade.id"
+                  :value="cidade.nome"
+                >
                   {{ cidade.nome }}
                 </option>
               </select>
@@ -83,7 +96,11 @@
               <label for="estado">Estado</label>
               <select id="estado" @change="carregarCidades" v-model="estado">
                 <option value="" disabled selected>Selecione o estado</option>
-                <option v-for="estado in estados" :key="estado.id" :value="estado.id">
+                <option
+                  v-for="estado in estados"
+                  :key="estado.id"
+                  :value="estado.id"
+                >
                   {{ estado.nome }}
                 </option>
               </select>
@@ -102,7 +119,10 @@
             <input id="checkTermoUso" type="checkbox" v-model="termosUso" />
             <label for="checkTermoUso">
               Eu li e concordo com os
-              <a target="_blank" href="https://drive.google.com/file/d/1nVks_cwwPFoiZKc7nQOP5PmZ-oDh7nLN/view?usp=sharing">
+              <a
+                target="_blank"
+                href="https://drive.google.com/file/d/1nVks_cwwPFoiZKc7nQOP5PmZ-oDh7nLN/view?usp=sharing"
+              >
                 termos e condições de uso
               </a>.
             </label>
@@ -112,14 +132,21 @@
             <input id="checkPolPriv" type="checkbox" v-model="termosPrivacidade" />
             <label for="checkPolPriv">
               Eu li e concordo com os termos da
-              <a target="_blank" href="https://drive.google.com/file/d/1nVks_cwwPFoiZKc7nQOP5PmZ-oDh7nLN/view?usp=sharing">
+              <a
+                target="_blank"
+                href="https://drive.google.com/file/d/1nVks_cwwPFoiZKc7nQOP5PmZ-oDh7nLN/view?usp=sharing"
+              >
                 Política de privacidade
               </a>.
             </label>
           </div>
         </div>
-
-        <input id="btnAvancar" type="submit" value="Avançar" :disabled="!formValido" />
+        <input
+          id="btnAvancar"
+          type="submit"
+          value="Avançar"
+          :disabled="!formValido"
+        />
       </div>
     </div>
   </form>
@@ -129,77 +156,92 @@
 import { db } from "../../../Firebase";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "vue-router"; // Importe useRouter
+import { ref, reactive, onMounted, computed } from "vue"; // Importe ref, reactive, onMounted e computed
 import "./CampoTexto.scss";
 
 export default {
   name: "CampoTexto",
-  data() {
-    return {
-      nome: "",
-      cpf: "",
-      nascimento: "",
-      email: "",
-      senha: "",
-      cep: "",
-      endereco: "",
-      numeroDaCasa: "",
-      complemento: "",
-      estado: "",
-      cidade: "",
-      pontoDeReferencia: "",
-      termosUso: false,
-      termosPrivacidade: false,
-      estados: [],
-      cidades: [],
-    };
-  },
-  mounted() {
-    fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
-      .then((response) => response.json())
-      .then((data) => {
-        this.estados = data.sort((a, b) => a.nome.localeCompare(b.nome));
-      })
-      .catch((error) => {
-        console.error("Erro ao carregar os estados:", error);
-      });
-  },
-  methods: {
-    irParaSolicitacao() {
-      this.$router.push({ name: "Solicitacao" });
-    },
+  setup() {
+    const nome = ref("");
+    const cpf = ref("");
+    const nascimento = ref("");
+    const email = ref("");
+    const senha = ref("");
+    const cep = ref("");
+    const endereco = ref("");
+    const numeroDaCasa = ref("");
+    const complemento = ref("");
+    const estado = ref("");
+    const cidade = ref("");
+    const pontoDeReferencia = ref("");
+    const termosUso = ref(false);
+    const termosPrivacidade = ref(false);
+    const estados = ref([]);
+    const cidades = ref([]);
+    const router = useRouter(); // Inicialize o useRouter
 
-    carregarCidades() {
-      if (this.estado) {
+    const formValido = computed(() => {
+      return (
+        nome.value !== "" &&
+        cpf.value !== "" &&
+        nascimento.value !== "" &&
+        email.value !== "" &&
+        senha.value !== "" &&
+        cep.value !== "" &&
+        endereco.value !== "" &&
+        numeroDaCasa.value !== "" &&
+        estado.value !== "" &&
+        cidade.value !== "" &&
+        termosUso.value &&
+        termosPrivacidade.value
+      );
+    });
+
+    onMounted(() => {
+      fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
+        .then((response) => response.json())
+        .then((data) => {
+          estados.value = data.sort((a, b) => a.nome.localeCompare(b.nome));
+        })
+        .catch((error) => {
+          console.error("Erro ao carregar os estados:", error);
+        });
+    });
+
+    const carregarCidades = () => {
+      if (estado.value) {
         fetch(
-          `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${this.estado}/municipios`
+          `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estado.value}/municipios`
         )
           .then((response) => response.json())
           .then((data) => {
-            this.cidades = data;
+            cidades.value = data;
           })
           .catch((error) => {
             console.error("Erro ao carregar as cidades:", error);
           });
       } else {
-        this.cidades = [];
+        cidades.value = [];
       }
-    },
+    };
 
-    async salvarDadosNoFirebase(userId) {
+    const salvarDadosNoFirebase = async (userId) => {
       try {
+        const db = getFirestore();
         const clienteDocRef = doc(collection(db, `Users/${userId}/Cliente`));
         await setDoc(clienteDocRef, {
-          nome: this.nome,
-          cpf: this.cpf,
-          nascimento: this.nascimento,
-          email: this.email,
-          cep: this.cep,
-          endereco: this.endereco,
-          numeroDaCasa: this.numeroDaCasa,
-          complemento: this.complemento,
-          estado: this.estado,
-          cidade: this.cidade,
-          pontoDeReferencia: this.pontoDeReferencia,
+          nome: nome.value,
+          cpf: cpf.value,
+          nascimento: nascimento.value,
+          email: email.value,
+          cep: cep.value,
+          endereco: endereco.value,
+          numeroDaCasa: numeroDaCasa.value,
+          complemento: complemento.value,
+          estado: estado.value,
+          cidade: cidade.value,
+          pontoDeReferencia: pontoDeReferencia.value,
         });
 
         console.log(
@@ -210,16 +252,16 @@ export default {
         console.error("Erro ao salvar os dados no Firebase:", error);
         return false;
       }
-    },
+    };
 
-    async onSubmit() {
-      if (this.formValido) {
+    const onSubmit = async () => {
+      if (formValido.value) {
         const auth = getAuth();
         try {
           const userCredential = await createUserWithEmailAndPassword(
             auth,
-            this.email,
-            this.senha
+            email.value,
+            senha.value
           );
           const userId = userCredential.user.uid;
           console.log(
@@ -227,10 +269,10 @@ export default {
             userId
           );
 
-          const dadosSalvos = await this.salvarDadosNoFirebase(userId);
+          const dadosSalvos = await salvarDadosNoFirebase(userId);
 
           if (dadosSalvos) {
-            this.$router.push({ name: "Pagamento", params: { userId } });
+            router.push({ name: "Pagamento", params: { userId } });
           } else {
             alert("Ocorreu um erro ao salvar os dados. Tente novamente.");
           }
@@ -246,25 +288,34 @@ export default {
       } else {
         alert("Por favor, preencha todos os campos.");
       }
-    },
-  },
-  computed: {
-    formValido() {
-      return (
-        this.nome !== "" &&
-        this.cpf !== "" &&
-        this.nascimento !== "" &&
-        this.email !== "" &&
-        this.senha !== "" &&
-        this.cep !== "" &&
-        this.endereco !== "" &&
-        this.numeroDaCasa !== "" &&
-        this.estado !== "" &&
-        this.cidade !== "" &&
-        this.termosUso &&
-        this.termosPrivacidade
-      );
-    },
+    };
+
+    const irParaSolicitacao = () => {
+      router.push({ name: "Solicitacao" });
+    };
+
+    return {
+      nome,
+      cpf,
+      nascimento,
+      email,
+      senha,
+      cep,
+      endereco,
+      numeroDaCasa,
+      complemento,
+      estado,
+      cidade,
+      pontoDeReferencia,
+      termosUso,
+      termosPrivacidade,
+      estados,
+      cidades,
+      formValido,
+      irParaSolicitacao,
+      onSubmit,
+      carregarCidades,
+    };
   },
 };
 </script>
