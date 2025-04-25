@@ -1,69 +1,52 @@
-# 1. Instalar o Node.js e npm:
 
-Baixe e instale o Node.js. Isso também instala o npm (Node Package Manager).
+# Blazar (blazar-frontend)
 
-Verifique se o Node.js e npm foram instalados:
+## Description
 
-Terminal:
+Frontend project for SciTARC's Blazar©.
 
-Copiar código
+## How to run
 
-node -v
-npm -v
+First, you'll need to install [docker](https://www.docker.com/) on your machine.
 
-# 2. Instalar o Vue CLI (se necessário)
-A Vue CLI pode ser útil para criar novos projetos e configurar ambientes locais.
+You also need [make](https://www.gnu.org/software/make/) to run commands (if you are in a unix environment, probably you have it)
 
-Instale globalmente:
+Move .env.example file to .env (fill with the right environment data)
 
-Terminal: 
+from terminal access the folder that you cloned the repository and ran this command:
 
-Copiar código
+```
+make dev
+```
 
-npm install -g @vue/cli
+To verify another make commands, see the output of `make help` command.
 
-Verifique a instalação:
+If everything runs well, you can access the application on `http://localhost:8080`
 
-Terminal: 
+For DynamoDB administration, access `http://localhost:8001`
 
-Copiar código
-vue --version
+## How to run tests
 
-# 3. Clonar ou baixar o projeto
-Se o projeto estiver em um repositório Git, clone-o:
+To run all tests in normal mode:
 
+```bash
+npm run test
+```
 
-Terminal:
-Copiar código
-git clone https://github.com/JoaoBittencourt1/blazar-
+To run all tests in _watch_ mode:
 
-Navegue até a pasta do projeto:
+```bash
+npm run test:watch
+```
 
-Terminal: 
+To generate a code coverage report:
 
-Copiar código
-cd caminho/do/projeto
-# 4. Instalar as dependências do projeto
-Instale as dependências listadas no arquivo package.json do projeto:
+```bash
+npm run test:coverage
+```
 
-terminal:
+To run all unit tests in _watch_ mode:
 
-Copiar código
-npm install
-# 5. Executar o servidor de desenvolvimento
-Inicie o servidor para visualizar o projeto localmente:
-
-terminal:
-
-Copiar código:
-
-npm run serve 
-
-Em outro terminal
-
-Copiar código:
-
-cd stripe-backend 
-node index.js
-
-http://localhost:8080/ - link para acessar o projeto frontend localmente.
+```bash
+npm run test:unit
+```
