@@ -39,7 +39,7 @@ const routes = [
     component: Solicitacao,
   },
   {
-    path: '/',
+    path: '/app',
     component: BlazarLayoutVue,
     children: [
       {

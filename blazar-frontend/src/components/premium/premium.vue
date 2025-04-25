@@ -158,6 +158,7 @@
 import { useRouter } from "vue-router"; 
 import { ref, reactive, onMounted, computed } from "vue"; 
 import "./premium.scss";
+import axios from "axios";
 
 export default {
   name: "PremiumPage",
@@ -253,40 +254,39 @@ export default {
     };
 
     const onSubmit = async () => {
-      if (formValido.value) {
-        const auth = getAuth();
-        try {
-          const userCredential = await createUserWithEmailAndPassword(
-            auth,
-            email.value,
-            senha.value
-          );
-          const userId = userCredential.user.uid;
-          console.log(
-            "Usuário criado com sucesso no Firebase Authentication, UID:",
-            userId
-          );
+  if (formValido.value) {
+    try {
+      const response = await axios.post("http://localhost:3000/api/clientes", {
+        nome: nome.value,
+        cpf: cpf.value,
+        nascimento: nascimento.value,
+        email: email.value,
+        senha: senha.value, 
+        cep: cep.value,
+        endereco: endereco.value,
+        numeroDaCasa: numeroDaCasa.value,
+        complemento: complemento.value,
+        estado: estado.value,
+        cidade: cidade.value,
+        pontoDeReferencia: pontoDeReferencia.value,
+      });
 
-          const dadosSalvos = await salvarDadosNoFirebase(userId);
-
-          if (dadosSalvos) {
-            router.push({ name: "PagamentoVue", params: { userId } });
-          } else {
-            alert("Ocorreu um erro ao salvar os dados. Tente novamente.");
-          }
-        } catch (error) {
-          console.error(
-            "Erro ao criar usuário no Firebase Authentication:",
-            error
-          );
-          alert(
-            "Ocorreu um erro ao criar o usuário. Verifique os dados e tente novamente."
-          );
-        }
+      // Se tudo der certo, redireciona para a página de pagamento
+      if (response.status === 201 || response.status === 200) {
+        const userId = response.data._id || response.data.id || "123";
+        router.push({ name: "PagamentoVue", params: { userId } });
       } else {
-        alert("Por favor, preencha todos os campos.");
+        alert("Erro ao salvar os dados.");
       }
-    };
+    } catch (error) {
+      console.error("Erro ao enviar dados para o backend:", error);
+      alert("Erro ao salvar os dados. Verifique os dados e tente novamente.");
+    }
+  } else {
+    alert("Por favor, preencha todos os campos obrigatórios.");
+  }
+};
+
 
     const irParaSolicitacao = () => {
       router.push({ name: "Solicitacao" });

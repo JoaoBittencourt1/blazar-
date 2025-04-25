@@ -63,7 +63,7 @@ export default route(function (/* { store, ssrContext } */) {
       to.fullPath.indexOf('type=invite') !== -1;
 
     if (to.meta.requiresAuth && !session.value) {
-      return next({ name: '' });
+      return next({ name: 'Pagamento' });
     }
 
     if (
